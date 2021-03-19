@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import * as emailjs from "emailjs-com";
-import { Grid, Typography, TextField, Button } from "@material-ui/core";
+import {
+  Grid,
+  Typography,
+  TextField,
+  Button,
+  Collapse,
+} from "@material-ui/core";
 
 const EmailForm = () => {
   const emptyForm = {
@@ -10,6 +16,7 @@ const EmailForm = () => {
     message: "",
   };
   const [form, setForm] = useState(emptyForm);
+  const [showForm, setShowForm] = useState([true, false]);
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -29,6 +36,7 @@ const EmailForm = () => {
     );
 
     setForm(emptyForm);
+    setShowForm([false, true]);
   };
 
   useEffect(() => {
@@ -36,45 +44,58 @@ const EmailForm = () => {
   }, [form]);
 
   return (
-    <Grid container direction="column">
-      <Typography>Your name</Typography>
-      <TextField
-        variant="outlined"
-        label="Joe Soap"
-        style={{ marginTop: 10 }}
-        onChange={(e) => setForm({ ...form, name: e.target.value })}
-      />
-      <Typography style={{ marginTop: 10 }}>Email address</Typography>
-      <TextField
-        variant="outlined"
-        label="you@yourdomain.com"
-        style={{ marginTop: 10 }}
-        onChange={(e) => setForm({ ...form, email: e.target.value })}
-      />
-      <Typography style={{ marginTop: 10 }}>Subject</Typography>
-      <TextField
-        variant="outlined"
-        label="Subject"
-        style={{ marginTop: 10 }}
-        onChange={(e) => setForm({ ...form, subject: e.target.value })}
-      />
-      <Typography style={{ marginTop: 10 }}>Message</Typography>
-      <TextField
-        multiline
-        rows={10}
-        variant="outlined"
-        label="How I can help?"
-        style={{ marginTop: 10 }}
-        onChange={(e) => setForm({ ...form, message: e.target.value })}
-      />
-      <Button
-        style={{ marginTop: 20 }}
-        variant="contained"
-        onClick={(e) => sendEmail(e)}
-      >
-        Send
-      </Button>
-    </Grid>
+    <React.Fragment>
+      <Collapse in={showForm[0]} timeout={1000}>
+        <Grid container direction="column">
+          <Typography>Your name</Typography>
+          <TextField
+            value={form.name}
+            variant="outlined"
+            label="Joe Soap"
+            style={{ marginTop: 10 }}
+            onChange={(e) => setForm({ ...form, name: e.target.value })}
+          />
+          <Typography style={{ marginTop: 10 }}>Email address</Typography>
+          <TextField
+            value={form.email}
+            variant="outlined"
+            label="you@yourdomain.com"
+            style={{ marginTop: 10 }}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+          />
+          <Typography style={{ marginTop: 10 }}>Subject</Typography>
+          <TextField
+            value={form.subject}
+            variant="outlined"
+            label="Subject"
+            style={{ marginTop: 10 }}
+            onChange={(e) => setForm({ ...form, subject: e.target.value })}
+          />
+          <Typography style={{ marginTop: 10 }}>Message</Typography>
+          <TextField
+            multiline
+            rows={10}
+            value={form.message}
+            variant="outlined"
+            label="How I can help?"
+            style={{ marginTop: 10 }}
+            onChange={(e) => setForm({ ...form, message: e.target.value })}
+          />
+          <Button
+            style={{ marginTop: 20 }}
+            variant="contained"
+            onClick={(e) => sendEmail(e)}
+          >
+            Send
+          </Button>
+        </Grid>
+      </Collapse>
+      <Collapse in={showForm[1]} timeout={1000}>
+        <Typography variant="h6">
+          Your email was successfully submitted
+        </Typography>
+      </Collapse>
+    </React.Fragment>
   );
 };
 
