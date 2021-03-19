@@ -13,19 +13,15 @@ import {
   Divider,
   Chip,
 } from "@material-ui/core";
-import PersonIcon from "@material-ui/icons/Person";
-import BuildIcon from "@material-ui/icons/Build";
-import WorkIcon from "@material-ui/icons/Work";
-import BeachAccessIcon from "@material-ui/icons/BeachAccess";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import EmailIcon from "@material-ui/icons/Email";
-import ContactsIcon from "@material-ui/icons/Contacts";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import face from "./assets/BP3-4245.jpg";
 import { useSpring, animated } from "react-spring";
 import "./styles.css";
 import strings from "./strings";
+import Header from "./Header";
 
 function App() {
   const theme = createMuiTheme({
@@ -128,32 +124,6 @@ function App() {
           }}
         />
       </div>
-    );
-  };
-
-  const headerItem = (title, icon) => {
-    return (
-      <Grid container direction="row" alignItems="center">
-        <Avatar>{icon}</Avatar>
-        <Typography style={{ marginLeft: 10 }}>{title}</Typography>
-      </Grid>
-    );
-  };
-
-  const header = () => {
-    return (
-      <Grid
-        container
-        direction="row"
-        justify="space-evenly"
-        style={{ marginTop: 50 }}
-      >
-        <Grid item>{headerItem("About me", <PersonIcon />)}</Grid>
-        <Grid item>{headerItem("Skills", <BuildIcon />)}</Grid>
-        <Grid item>{headerItem("Projects", <WorkIcon />)}</Grid>
-        <Grid item>{headerItem("Hobbies", <BeachAccessIcon />)}</Grid>
-        <Grid item>{headerItem("Contacts", <ContactsIcon />)}</Grid>
-      </Grid>
     );
   };
 
@@ -305,7 +275,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      {header()}
+      <Header />
       {section("About me", aboutMeContent)}
       {section("Skills", skillsContent())}
       {section("Projects", projectsContent())}
