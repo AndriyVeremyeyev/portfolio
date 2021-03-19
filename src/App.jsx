@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   createMuiTheme,
   Grid,
@@ -8,8 +8,6 @@ import {
   Card,
   Chip,
   Box,
-  TextField,
-  Button,
 } from "@material-ui/core";
 
 import face from "./assets/BP3-4245.jpg";
@@ -20,8 +18,8 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Section from "./Section";
 import WorldMap from "./WorldMap";
+import EmailForm from "./EmailForm";
 import { skills } from "./data";
-import * as emailjs from "emailjs-com";
 
 function App() {
   const theme = createMuiTheme({
@@ -151,83 +149,11 @@ function App() {
     );
   };
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
-
-  const emailForm = () => {
-    return (
-      <Grid container direction="column">
-        <Typography>Your name</Typography>
-        <TextField
-          variant="outlined"
-          label="Joe Soap"
-          style={{ marginTop: 10 }}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <Typography style={{ marginTop: 10 }}>Email address</Typography>
-        <TextField
-          variant="outlined"
-          label="you@yourdomain.com"
-          style={{ marginTop: 10 }}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <Typography style={{ marginTop: 10 }}>Subject</Typography>
-        <TextField
-          variant="outlined"
-          label="Subject"
-          style={{ marginTop: 10 }}
-          onChange={(e) => setSubject(e.target.value)}
-        />
-        <Typography style={{ marginTop: 10 }}>Message</Typography>
-        <TextField
-          multiline
-          rows={10}
-          variant="outlined"
-          label="How I can help?"
-          style={{ marginTop: 10 }}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        <Button
-          style={{ marginTop: 20 }}
-          variant="contained"
-          onClick={(e) => sendEmail(e)}
-        >
-          Send
-        </Button>
-      </Grid>
-    );
-  };
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    const templateParams = {
-      from_name: name,
-      email: email,
-      subject: subject,
-      message_html: message,
-    };
-
-    emailjs.send(
-      "service_r80rhn8",
-      "template_48uwkv8",
-      templateParams,
-      "user_qNzdA0MA8Q5xTka6tyqBP"
-    );
-
-    setName("");
-    setEmail("");
-    setSubject("");
-    setMessage("");
-  };
-
   const sections = [
     { title: "About me", content: aboutMeContent },
     { title: "Skills", content: skillsContent() },
     { title: "Projects", content: projectsContent() },
-    { title: "Contacts", content: twoColumnContent(emailForm()) },
+    { title: "Contacts", content: twoColumnContent(<EmailForm />) },
   ];
 
   return (
