@@ -4,21 +4,19 @@ import {
   Grid,
   Typography,
   ThemeProvider,
-  Link,
   CardMedia,
   Card,
   Divider,
   Chip,
 } from "@material-ui/core";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import EmailIcon from "@material-ui/icons/Email";
-import FacebookIcon from "@material-ui/icons/Facebook";
+
 import face from "./assets/BP3-4245.jpg";
 import { useSpring, animated } from "react-spring";
 import "./styles.css";
 import strings from "./strings";
+import Footer from "./Footer";
 import Header from "./Header";
+import Section from "./Section";
 import WorldMap from "./WorldMap";
 import { skills } from "./data";
 
@@ -50,41 +48,6 @@ function App() {
         onMouseLeave={() => set({ xys: [0, 0, 1] })}
         style={{ transform: props.xys.interpolate(trans) }}
       />
-    );
-  };
-
-  const footerItem = (link, icon) => {
-    return (
-      <Grid item style={{ marginLeft: 20 }}>
-        <Link href={link} target="_blank" color="inherit">
-          {icon}
-        </Link>
-      </Grid>
-    );
-  };
-
-  const footer = () => {
-    return (
-      <Grid
-        container
-        direction="row"
-        justify="flex-end"
-        style={{ marginTop: 50 }}
-      >
-        {footerItem(
-          "https://github.com/AndriyVeremyeyev",
-          <GitHubIcon fontSize="large" />
-        )}
-        {footerItem(
-          "https://www.linkedin.com/in/andriy-veremyeyev/",
-          <LinkedInIcon fontSize="large" />
-        )}
-        {footerItem(
-          "https://www.facebook.com/andriy.veremyeyev/",
-          <FacebookIcon fontSize="large" />
-        )}
-        {footerItem("", <EmailIcon fontSize="large" />)}
-      </Grid>
     );
   };
 
@@ -199,12 +162,22 @@ function App() {
     );
   };
 
+  const sections = [
+    { title: "About me", content: aboutMeContent },
+    { title: "Skills", content: skillsContent() },
+    { title: "Projects", content: projectsContent() },
+  ];
+
   return (
     <ThemeProvider theme={theme}>
       <Header />
-      {section("About me", aboutMeContent)}
-      {section("Skills", skillsContent())}
-      {section("Projects", projectsContent())}
+      {sections.map((section, index) => (
+        <Section
+          key={`section${index}`}
+          sectionTitle={section.title}
+          sectionContent={section.content}
+        />
+      ))}
       <Grid
         container
         direction="column"
@@ -217,7 +190,7 @@ function App() {
         </Typography>
       </Grid>
       <WorldMap />
-      {footer()}
+      <Footer />
     </ThemeProvider>
   );
 }
