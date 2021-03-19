@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   createMuiTheme,
   Grid,
@@ -6,8 +6,10 @@ import {
   ThemeProvider,
   CardMedia,
   Card,
-  Divider,
   Chip,
+  Box,
+  TextField,
+  Button,
 } from "@material-ui/core";
 
 import face from "./assets/BP3-4245.jpg";
@@ -19,6 +21,7 @@ import Header from "./Header";
 import Section from "./Section";
 import WorldMap from "./WorldMap";
 import { skills } from "./data";
+import * as emailjs from "emailjs-com";
 
 function App() {
   const theme = createMuiTheme({
@@ -43,7 +46,7 @@ function App() {
   const springCard = (springCardClass) => {
     return (
       <animated.div
-        class={springCardClass}
+        className={springCardClass}
         onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
         onMouseLeave={() => set({ xys: [0, 0, 1] })}
         style={{ transform: props.xys.interpolate(trans) }}
@@ -54,57 +57,24 @@ function App() {
   const skillsContent = () => {
     return (
       <Grid container direction="row" justify="flex-start">
-        {skills.map((skill, index) => {
-          return (
-            <Chip
-              key={index}
-              label={skill}
-              style={{ height: 40, fontSize: 15, marginRight: 20 }}
-            />
-          );
-        })}
+        {skills.map((skill, index) => (
+          <Chip
+            key={`skill${index}`}
+            label={skill}
+            style={{ height: 40, fontSize: 15, marginRight: 20 }}
+          />
+        ))}
       </Grid>
     );
   };
 
-  const section = (sectionTitle, sectionContent) => {
+  const twoColumnContent = (leftColumn, rightColumn = "") => {
     return (
-      <Grid
-        container
-        direction="row"
-        style={{ marginTop: 30 }}
-        justify="center"
-        spacing={3}
-      >
-        <Grid item xs={2}>
-          <Grid
-            container
-            direction="row"
-            justify="space-between"
-            style={{ height: "100%" }}
-          >
-            <Grid item style={{ paddingLeft: 15 }}>
-              <Typography variant="h4">{sectionTitle}</Typography>
-            </Grid>
-            <Grid item>
-              <Divider orientation="vertical" style={{ width: 2 }} />
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={10}>
-          {sectionContent}
-        </Grid>
-      </Grid>
-    );
-  };
-
-  const twoColumnContent = (leftColumn, rightColumn) => {
-    return (
-      <Grid container row justify="flex-start" spacing={3}>
-        <Grid item xs={12} sm={5}>
+      <Grid container direction="row" justify="flex-start" spacing={3}>
+        <Grid item xs={12} md={5}>
           {leftColumn}
         </Grid>
-        <Grid item xs={12} sm={5}>
+        <Grid item xs={12} md={5}>
           {rightColumn}
         </Grid>
       </Grid>
@@ -119,33 +89,52 @@ function App() {
     );
   };
 
-  const contentText = (textOne, textTwo = "") => {
+  const contentText = (
+    textOne = "",
+    textOneSize = "h5",
+    textTwo = [""],
+    textTwoSize = "h6"
+  ) => {
     return (
       <React.Fragment>
-        <Typography variant="h6">{textOne}</Typography>
-        <Typography variant="h6" style={{ marginTop: 20 }}>
-          {textTwo}
-        </Typography>
+        <Typography variant={textOneSize}>{textOne}</Typography>
+        <Box style={{ marginTop: 20 }}>
+          {textTwo.map((text, index) => (
+            <Typography
+              key={`text${index}`}
+              variant={textTwoSize}
+              style={{ marginTop: 10 }}
+            >
+              {text}
+            </Typography>
+          ))}
+        </Box>
       </React.Fragment>
     );
   };
 
-  const aboutMeText = contentText(strings.aboutMeOne, strings.aboutMeTwo);
+  const aboutMeText = contentText("", "h5", [
+    strings.aboutMeOne,
+    strings.aboutMeTwo,
+  ]);
   const aboutMeContent = twoColumnContent(aboutMeImage(), aboutMeText);
 
   const westSeattleContent = twoColumnContent(
     springCard("card west__seattle"),
-    contentText("West Seattle Bikes")
+    contentText("West Seattle Bikes", "h5", [strings.westSeattleAbout])
   );
 
   const zineMakerContent = twoColumnContent(
     springCard("card zine__maker"),
-    contentText("Zine Maker")
+    contentText("Zine Maker", "h5", [
+      strings.zineMakerAboutOne,
+      strings.zineMakerAboutTwo,
+    ])
   );
 
   const nurseSchedulerContent = twoColumnContent(
     springCard("card nurse__scheduler"),
-    contentText("Nurse Scheduler")
+    contentText("Nurse Scheduler", "h5", [strings.nurseSchedulerAbout])
   );
 
   const projectsContent = () => {
@@ -162,10 +151,83 @@ function App() {
     );
   };
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+
+  const emailForm = () => {
+    return (
+      <Grid container direction="column">
+        <Typography>Your name</Typography>
+        <TextField
+          variant="outlined"
+          label="Joe Soap"
+          style={{ marginTop: 10 }}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <Typography style={{ marginTop: 10 }}>Email address</Typography>
+        <TextField
+          variant="outlined"
+          label="you@yourdomain.com"
+          style={{ marginTop: 10 }}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Typography style={{ marginTop: 10 }}>Subject</Typography>
+        <TextField
+          variant="outlined"
+          label="Subject"
+          style={{ marginTop: 10 }}
+          onChange={(e) => setSubject(e.target.value)}
+        />
+        <Typography style={{ marginTop: 10 }}>Message</Typography>
+        <TextField
+          multiline
+          rows={10}
+          variant="outlined"
+          label="How I can help?"
+          style={{ marginTop: 10 }}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <Button
+          style={{ marginTop: 20 }}
+          variant="contained"
+          onClick={(e) => sendEmail(e)}
+        >
+          Send
+        </Button>
+      </Grid>
+    );
+  };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    const templateParams = {
+      from_name: name,
+      email: email,
+      subject: subject,
+      message_html: message,
+    };
+
+    emailjs.send(
+      "service_r80rhn8",
+      "template_48uwkv8",
+      templateParams,
+      "user_qNzdA0MA8Q5xTka6tyqBP"
+    );
+
+    setName("");
+    setEmail("");
+    setSubject("");
+    setMessage("");
+  };
+
   const sections = [
     { title: "About me", content: aboutMeContent },
     { title: "Skills", content: skillsContent() },
     { title: "Projects", content: projectsContent() },
+    { title: "Contacts", content: twoColumnContent(emailForm()) },
   ];
 
   return (

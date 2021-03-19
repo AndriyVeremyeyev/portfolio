@@ -7,17 +7,17 @@ const Section = ({ sectionTitle, sectionContent }) => {
       container
       direction="row"
       style={{ marginTop: 30 }}
-      justify="center"
+      justify="flex-start"
       spacing={3}
     >
-      <Grid item xs={2}>
+      <Grid item xs={4} sm={3} md={2}>
         <Grid
           container
           direction="row"
           justify="space-between"
           style={{ height: "100%" }}
         >
-          <Grid item style={{ paddingLeft: 15 }}>
+          <Grid item>
             <Typography variant="h4">{sectionTitle}</Typography>
           </Grid>
           <Grid item>
@@ -25,7 +25,7 @@ const Section = ({ sectionTitle, sectionContent }) => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={10}>
+      <Grid item xs={8} sm={9} md={10}>
         {sectionContent}
       </Grid>
     </Grid>

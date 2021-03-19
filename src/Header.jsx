@@ -7,27 +7,29 @@ import BeachAccessIcon from "@material-ui/icons/BeachAccess";
 import ContactsIcon from "@material-ui/icons/Contacts";
 
 const Header = () => {
-  const headerItem = (title, icon) => {
-    return (
-      <Grid container direction="row" alignItems="center">
-        <Avatar>{icon}</Avatar>
-        <Typography style={{ marginLeft: 10 }}>{title}</Typography>
-      </Grid>
-    );
-  };
+  const headerItems = [
+    { title: "About me", icon: <PersonIcon /> },
+    { title: "Skills", icon: <BuildIcon /> },
+    { title: "Projects", icon: <WorkIcon /> },
+    { title: "Hobbies", icon: <BeachAccessIcon /> },
+    { title: "Contacts", icon: <ContactsIcon /> },
+  ];
 
   return (
     <Grid
       container
       direction="row"
       justify="space-evenly"
-      style={{ marginTop: 50 }}
+      style={{ marginTop: 50, marginLeft: 10, marginRight: 10 }}
     >
-      <Grid item>{headerItem("About me", <PersonIcon />)}</Grid>
-      <Grid item>{headerItem("Skills", <BuildIcon />)}</Grid>
-      <Grid item>{headerItem("Projects", <WorkIcon />)}</Grid>
-      <Grid item>{headerItem("Hobbies", <BeachAccessIcon />)}</Grid>
-      <Grid item>{headerItem("Contacts", <ContactsIcon />)}</Grid>
+      {headerItems.map((item, index) => (
+        <Grid item key={`headeritem${index}`}>
+          <Grid container direction="row" alignItems="center">
+            <Avatar>{item.icon}</Avatar>
+            <Typography style={{ marginLeft: 10 }}>{item.title}</Typography>
+          </Grid>
+        </Grid>
+      ))}
     </Grid>
   );
 };
