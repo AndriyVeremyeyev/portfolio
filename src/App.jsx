@@ -1,7 +1,5 @@
 import React from "react";
-import { VectorMap } from "react-jvectormap";
 import {
-  Avatar,
   createMuiTheme,
   Grid,
   Typography,
@@ -9,7 +7,6 @@ import {
   Link,
   CardMedia,
   Card,
-  Box,
   Divider,
   Chip,
 } from "@material-ui/core";
@@ -22,6 +19,8 @@ import { useSpring, animated } from "react-spring";
 import "./styles.css";
 import strings from "./strings";
 import Header from "./Header";
+import WorldMap from "./WorldMap";
+import { skills } from "./data";
 
 function App() {
   const theme = createMuiTheme({
@@ -43,18 +42,6 @@ function App() {
     config: { mass: 5, tension: 350, friction: 40 },
   }));
 
-  const skills = [
-    "JavaScript",
-    "C#",
-    "React",
-    "Redux",
-    "TypeScript",
-    "HTML",
-    "CSS",
-    "Bootstrap",
-    "Material UI",
-  ];
-
   const springCard = (springCardClass) => {
     return (
       <animated.div
@@ -63,67 +50,6 @@ function App() {
         onMouseLeave={() => set({ xys: [0, 0, 1] })}
         style={{ transform: props.xys.interpolate(trans) }}
       />
-    );
-  };
-
-  const mapData = {
-    BE: 0,
-    BH: 0,
-    BY: 0,
-    CA: 0,
-    DE: 0,
-    IT: 0,
-    FR: 0,
-    GB: 0,
-    GR: 0,
-    KZ: 0,
-    LU: 0,
-    NL: 0,
-    RU: 0,
-    RS: 0,
-    SA: 0,
-    TR: 0,
-    UA: 0,
-    US: 0,
-  };
-
-  const map = () => {
-    return (
-      <div>
-        <VectorMap
-          map={"world_mill"}
-          backgroundColor="transparent"
-          zoomOnScroll={false}
-          containerStyle={{
-            width: "100%",
-            height: "520px",
-          }}
-          containerClassName="map"
-          regionStyle={{
-            initial: {
-              fill: "#e4e4e4",
-              "fill-opacity": 0.9,
-              stroke: "none",
-              "stroke-width": 0,
-              "stroke-opacity": 0,
-            },
-            hover: {
-              "fill-opacity": 0.8,
-              cursor: "pointer",
-            },
-            selectedHover: {},
-          }}
-          series={{
-            regions: [
-              {
-                values: mapData,
-                scale: ["#0071A4"],
-                normalizeFunction: "polynomial",
-              },
-            ],
-          }}
-        />
-      </div>
     );
   };
 
@@ -290,7 +216,7 @@ function App() {
           I like to spent time with my family, like travel, hiking, snowboarding
         </Typography>
       </Grid>
-      <Box style={{ marginTop: 50 }}>{map()}</Box>
+      <WorldMap />
       {footer()}
     </ThemeProvider>
   );
