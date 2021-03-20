@@ -153,6 +153,7 @@ function App() {
     { title: "About me", content: aboutMeContent },
     { title: "Skills", content: skillsContent() },
     { title: "Projects", content: projectsContent() },
+    { title: "Hobbies", content: <WorldMap /> },
     { title: "Contacts", content: twoColumnContent(<EmailForm />) },
   ];
 
@@ -166,18 +167,6 @@ function App() {
           sectionContent={section.content}
         />
       ))}
-      <Grid
-        container
-        direction="column"
-        alignItems="center"
-        style={{ marginTop: 20 }}
-      >
-        <Typography variant="h4">Hobbies</Typography>
-        <Typography variant="h6" style={{ marginTop: 20 }}>
-          I like to spent time with my family, like travel, hiking, snowboarding
-        </Typography>
-      </Grid>
-      <WorldMap />
       <Footer />
     </ThemeProvider>
   );
