@@ -1,45 +1,50 @@
-import React, { useState, useEffect } from "react";
-import * as emailjs from "emailjs-com";
+import React, { Fragment, useState } from "react";
 import {
   Grid,
-  Typography,
   TextField,
   Button,
   Collapse,
+  Typography,
 } from "@material-ui/core";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import * as emailjs from "emailjs-com";
 
 const EmailForm = () => {
-  const emptyForm = {
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  };
-  const [form, setForm] = useState(emptyForm);
-  const [showForm, setShowForm] = useState([true, false, false, false]);
+  const initialValues = { name: "", email: "", subject: "", message: "" };
 
-  const validateEmail = (email) => {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-  };
+  const [form, setForm] = useState(initialValues);
+  const [showForm, setShowForm] = useState([true, false]);
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+  const validationSchema = yup.object({
+    name: yup
+      .string()
+      .min(1, "Must be 1 character or more")
+      .required("Name is required"),
+    email: yup
+      .string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    subject: yup
+      .string()
+      .min(1, "Must be 1 character or more")
+      .required("Subject is required"),
+    message: yup
+      .string()
+      .min(1, "Must be 1 character or more")
+      .required("Message is required"),
+  });
 
-    if (!validateEmail(form.email)) {
-      setShowForm([true, false, false, true]);
-    } else if (
-      !form.name.length &&
-      !form.subject.length &&
-      !form.message.length
-    ) {
-      setShowForm([true, false, true, false]);
-    } else {
+  const formik = useFormik({
+    initialValues: form,
+    validationSchema,
+
+    onSubmit: (values) => {
       const templateParams = {
-        from_name: form.name,
-        email: form.email,
-        subject: form.subject,
-        message_html: form.message,
+        from_name: values.name,
+        email: values.email,
+        subject: values.subject,
+        message_html: values.message,
       };
 
       emailjs.send(
@@ -49,78 +54,88 @@ const EmailForm = () => {
         "user_qNzdA0MA8Q5xTka6tyqBP"
       );
 
-      setForm(emptyForm);
-      setShowForm([false, true, false, false]);
-    }
-  };
+      setForm(initialValues);
+      setShowForm([false, true]);
+    },
+  });
 
-  useEffect(() => {
-    console.log(showForm);
-  }, [showForm]);
+  const textFields = [
+    {
+      name: "name",
+      label: "Joe Soap",
+      type: "text",
+      values: formik.values.name,
+      touched: formik.touched.name,
+      errors: formik.errors.name,
+      multiline: false,
+      rows: 0,
+    },
+    {
+      name: "email",
+      label: "you@yourdomain.com",
+      type: "email",
+      values: formik.values.email,
+      touched: formik.touched.email,
+      errors: formik.errors.email,
+      multiline: false,
+      rows: 0,
+    },
+    {
+      name: "subject",
+      label: "Subject",
+      type: "text",
+      values: formik.values.subject,
+      touched: formik.touched.subject,
+      errors: formik.errors.subject,
+      multiline: false,
+      rows: 0,
+    },
+    {
+      name: "message",
+      label: "How I can help?",
+      type: "text",
+      values: formik.values.message,
+      touched: formik.touched.message,
+      errors: formik.errors.message,
+      multiline: true,
+      rows: 10,
+    },
+  ];
 
   return (
-    <React.Fragment>
+    <Fragment>
       <Collapse in={showForm[0]} timeout={1000}>
-        <Grid container direction="column">
-          <Typography>Your name</Typography>
-          <TextField
-            value={form.name}
-            variant="outlined"
-            label="Joe Soap"
-            style={{ marginTop: 10 }}
-            onChange={(e) => setForm({ ...form, name: e.target.value })}
-          />
-          <Typography style={{ marginTop: 10 }}>Email address</Typography>
-          <TextField
-            value={form.email}
-            variant="outlined"
-            label="you@yourdomain.com"
-            style={{ marginTop: 10 }}
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
-          />
-          <Typography style={{ marginTop: 10 }}>Subject</Typography>
-          <TextField
-            value={form.subject}
-            variant="outlined"
-            label="Subject"
-            style={{ marginTop: 10 }}
-            onChange={(e) => setForm({ ...form, subject: e.target.value })}
-          />
-          <Typography style={{ marginTop: 10 }}>Message</Typography>
-          <TextField
-            multiline
-            rows={10}
-            value={form.message}
-            variant="outlined"
-            label="How I can help?"
-            style={{ marginTop: 10 }}
-            onChange={(e) => setForm({ ...form, message: e.target.value })}
-          />
-          <Button
-            style={{ marginTop: 20 }}
-            variant="contained"
-            onClick={(e) => sendEmail(e)}
-          >
-            Send
-          </Button>
-        </Grid>
-      </Collapse>
-      <Collapse in={showForm[3]} timeout={1000}>
-        <Typography variant="h6">
-          Make sure that you provided correct e-mail
-        </Typography>
-      </Collapse>
-      <Collapse in={showForm[2]} timeout={1000}>
-        <Typography variant="h6">
-          Make sure that you didn't left blank empty
-        </Typography>
+        <form onSubmit={formik.handleSubmit}>
+          <Grid container direction="column">
+            {textFields.map((field, index) => (
+              <TextField
+                key={`textField${index}`}
+                id={field.name}
+                name={field.name}
+                label={field.label}
+                type={field.type}
+                value={field.values}
+                variant="outlined"
+                style={{ marginTop: 10 }}
+                onChange={formik.handleChange}
+                error={field.touched && Boolean(field.errors)}
+                helperText={field.touched && field.errors}
+                multiline={field.multiline}
+                rows={field.rows}
+              />
+            ))}
+            <Button variant="contained" type="submit" style={{ marginTop: 20 }}>
+              Submit
+            </Button>
+          </Grid>
+        </form>
       </Collapse>
       <Collapse in={showForm[1]} timeout={1000}>
         <Typography variant="h6">
           Your email was successfully submitted
         </Typography>
       </Collapse>
-    </React.Fragment>
+    </Fragment>
   );
 };
 
