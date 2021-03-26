@@ -8,7 +8,7 @@ const Footer = () => {
   const footerItems = [
     {
       link: "https://github.com/AndriyVeremyeyev",
-      icon: <GitHubIcon fontSize="large" />,
+      icon: <GitHubIcon style={{ height: 30, width: 30, paddingTop: 2 }} />,
     },
     {
       link: "https://www.linkedin.com/in/andriy-veremyeyev/",
@@ -25,10 +25,10 @@ const Footer = () => {
       container
       direction="row"
       justify="flex-end"
-      style={{ marginTop: 50 }}
+      style={{ marginTop: 50, paddingRight: 50 }}
     >
       {footerItems.map((item, index) => (
-        <Grid key={`footerItem${index}`} item style={{ marginLeft: 20 }}>
+        <Grid key={`footerItem${index}`} item style={{ marginLeft: 50 }}>
           <Link href={item.link} target="_blank" color="inherit">
             {item.icon}
           </Link>

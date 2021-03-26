@@ -23,8 +23,6 @@ const EmailForm = () => {
     return re.test(String(email).toLowerCase());
   };
 
-  console.log(form.name.length, form.subject.length);
-
   const sendEmail = (e) => {
     e.preventDefault();
 
@@ -33,7 +31,7 @@ const EmailForm = () => {
     } else if (
       !form.name.length &&
       !form.subject.length &&
-      !form.subject.message
+      !form.message.length
     ) {
       setShowForm([true, false, true, false]);
     } else {

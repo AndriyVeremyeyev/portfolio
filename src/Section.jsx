@@ -10,7 +10,7 @@ const Section = ({ sectionTitle, sectionContent }) => {
       justify="flex-start"
       spacing={3}
     >
-      <Grid item xs={4} sm={3} md={2}>
+      <Grid item xs={12} sm={3} md={2}>
         <Grid
           container
           direction="row"
@@ -25,7 +25,7 @@ const Section = ({ sectionTitle, sectionContent }) => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={8} sm={9} md={10}>
+      <Grid item xs={12} sm={9} md={10}>
         {sectionContent}
       </Grid>
     </Grid>

@@ -101,7 +101,7 @@ function App() {
             <Typography
               key={`text${index}`}
               variant={textTwoSize}
-              style={{ marginTop: 10 }}
+              style={{ marginTop: 15 }}
             >
               {text}
             </Typography>
@@ -132,7 +132,10 @@ function App() {
 
   const nurseSchedulerContent = twoColumnContent(
     springCard("card nurse__scheduler"),
-    contentText("Nurse Scheduler", "h5", [strings.nurseSchedulerAbout])
+    contentText("Nurse Scheduler", "h5", [
+      strings.nurseSchedulerAboutOne,
+      strings.nurseSchedulerAboutTwo,
+    ])
   );
 
   const projectsContent = () => {
