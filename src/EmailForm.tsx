@@ -9,6 +9,7 @@ import {
 import { useFormik } from "formik";
 import * as yup from "yup";
 import * as emailjs from "emailjs-com";
+import strings from "./strings";
 
 const EmailForm = () => {
   const initialValues = { name: "", email: "", subject: "", message: "" };
@@ -131,9 +132,7 @@ const EmailForm = () => {
         </form>
       </Collapse>
       <Collapse in={showForm[1]} timeout={1000}>
-        <Typography variant="h6">
-          Your email was successfully submitted
-        </Typography>
+        <Typography variant="h6">{strings.submittedEmail}</Typography>
       </Collapse>
     </Fragment>
   );

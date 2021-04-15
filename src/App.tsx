@@ -28,7 +28,7 @@ function App() {
     },
   });
 
-  const calc = (x, y) => [
+  const calc = (x: any, y: any) => [
     -(y - window.innerHeight / 2) / 20,
     (x - window.innerWidth / 2) / 20,
     1.1,
@@ -41,7 +41,7 @@ function App() {
     config: { mass: 5, tension: 350, friction: 40 },
   }));
 
-  const springCard = (springCardClass) => {
+  const springCard = (springCardClass: any) => {
     return (
       <animated.div
         className={springCardClass}
@@ -66,7 +66,7 @@ function App() {
     );
   };
 
-  const twoColumnContent = (leftColumn, rightColumn = "") => {
+  const twoColumnContent = (leftColumn: any, rightColumn = "") => {
     return (
       <Grid container direction="row" justify="flex-start" spacing={3}>
         <Grid item xs={12} md={5}>

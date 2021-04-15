@@ -1,7 +1,13 @@
 import React from "react";
 import { Divider, Grid, Typography } from "@material-ui/core";
 
-const Section = ({ sectionTitle, sectionContent }) => {
+type SectionProps = {
+  sectionTitle: any;
+  sectionContent: any;
+};
+
+const Section = (props: SectionProps) => {
+  const { sectionTitle, sectionContent } = props;
   return (
     <Grid
       container

@@ -11,6 +11,7 @@ const strings = {
   zineMakerAboutTwo: `Similar to a blog or a digital magazine, use Zine Maker to create content-rich posts and organize them into readable publications. Sign up for an account, join community organizations or create your own, and then get started by submitting your posts to e-zines that you or your organization maintains.`,
   nurseSchedulerAboutOne: `This application was made to ease the work of a nurse scheduler. The nurse scheduler can input the nurse's requests which consist of vacation start date, vacation end date, a number of days requested off & additional comments as required.`,
   nurseSchedulerAboutTwo: `This application also allows a nurse scheduler to add work requests made by nurses and display it for references and update the due dates for form submission.`,
+  submittedEmail: "Your email was successfully submitted",
 };
 
 export default strings;
