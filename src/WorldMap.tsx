@@ -3,7 +3,7 @@ import { VectorMap } from "react-jvectormap";
 import { Box } from "@material-ui/core";
 import { mapData } from "./data";
 
-const WorldMap = () => {
+const WorldMap: React.FC = () => {
   return (
     <Box style={{ marginTop: 50 }}>
       <VectorMap

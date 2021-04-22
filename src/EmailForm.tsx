@@ -11,7 +11,7 @@ import * as yup from "yup";
 import * as emailjs from "emailjs-com";
 import strings from "./strings";
 
-const EmailForm = () => {
+const EmailForm: React.FC = () => {
   const initialValues = { name: "", email: "", subject: "", message: "" };
 
   const [form, setForm] = useState(initialValues);

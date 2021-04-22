@@ -6,7 +6,7 @@ type SectionProps = {
   sectionContent: any;
 };
 
-const Section = (props: SectionProps) => {
+const Section: React.FC<SectionProps> = (props) => {
   const { sectionTitle, sectionContent } = props;
   return (
     <Grid

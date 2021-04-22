@@ -21,19 +21,19 @@ import WorldMap from "./WorldMap";
 import EmailForm from "./EmailForm";
 import { skills } from "./data";
 
-function App() {
+const App: React.FC = () => {
   const theme = createMuiTheme({
     typography: {
       fontFamily: "Open Sans",
     },
   });
 
-  const calc = (x: any, y: any) => [
+  const calc = (x: number, y: number) => [
     -(y - window.innerHeight / 2) / 20,
     (x - window.innerWidth / 2) / 20,
     1.1,
   ];
-  const trans = (x, y, s) =>
+  const trans: any = (x: number, y: number, s: number) =>
     `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
 
   const [props, set] = useSpring(() => ({
@@ -66,7 +66,7 @@ function App() {
     );
   };
 
-  const twoColumnContent = (leftColumn: any, rightColumn = "") => {
+  const twoColumnContent = (leftColumn: any, rightColumn: any = "") => {
     return (
       <Grid container direction="row" justify="flex-start" spacing={3}>
         <Grid item xs={12} md={5}>
@@ -89,9 +89,9 @@ function App() {
 
   const contentText = (
     textOne = "",
-    textOneSize = "h5",
+    textOneSize: any = "h5",
     textTwo = [""],
-    textTwoSize = "h6"
+    textTwoSize: any = "h6"
   ) => {
     return (
       <React.Fragment>
@@ -173,6 +173,6 @@ function App() {
       <Footer />
     </ThemeProvider>
   );
-}
+};
 
 export default App;

@@ -6,7 +6,7 @@ import WorkIcon from "@material-ui/icons/Work";
 import BeachAccessIcon from "@material-ui/icons/BeachAccess";
 import ContactsIcon from "@material-ui/icons/Contacts";
 
-const Header = () => {
+const Header: React.FC = () => {
   const headerItems = [
     { title: "About me", icon: <PersonIcon /> },
     { title: "Skills", icon: <BuildIcon /> },
