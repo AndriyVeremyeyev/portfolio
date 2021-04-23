@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Grid, Typography } from "@material-ui/core";
+import { Avatar, Grid, Link } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
 import BuildIcon from "@material-ui/icons/Build";
 import WorkIcon from "@material-ui/icons/Work";
@@ -26,7 +26,12 @@ const Header: React.FC = () => {
         <Grid item key={`headeritem${index}`}>
           <Grid container direction="row" alignItems="center">
             <Avatar>{item.icon}</Avatar>
-            <Typography style={{ marginLeft: 10 }}>{item.title}</Typography>
+            <Link
+              href={`#${item.title.toLowerCase().replace(" ", "")}`}
+              style={{ marginLeft: 10 }}
+            >
+              {item.title}
+            </Link>
           </Grid>
         </Grid>
       ))}

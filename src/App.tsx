@@ -82,7 +82,10 @@ const App: React.FC = () => {
   const aboutMeImage = () => {
     return (
       <Card>
-        <CardMedia image={face} style={{ height: 600 }} />
+        <CardMedia
+          image={face}
+          style={{ height: 600, backgroundSize: "cover" }}
+        />
       </Card>
     );
   };
@@ -164,11 +167,13 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <Header />
       {sections.map((section, index) => (
-        <Section
-          key={`section${index}`}
-          sectionTitle={section.title}
-          sectionContent={section.content}
-        />
+        <div id={section.title.toLowerCase().replace(" ", "")}>
+          <Section
+            key={`section${index}`}
+            sectionTitle={section.title}
+            sectionContent={section.content}
+          />
+        </div>
       ))}
       <Footer />
     </ThemeProvider>
