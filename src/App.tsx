@@ -4,8 +4,6 @@ import {
   Grid,
   Typography,
   ThemeProvider,
-  CardMedia,
-  Card,
   Chip,
   Box,
 } from "@material-ui/core";
@@ -27,6 +25,13 @@ const App: React.FC = () => {
       fontFamily: "Open Sans",
     },
   });
+
+  const imageStyle = {
+    backgroundImage: `url(${face}
+  )`,
+    backgroundSize: "cover",
+    height: 800,
+  };
 
   const calc = (x: number, y: number) => [
     -(y - window.innerHeight / 2) / 20,
@@ -80,14 +85,7 @@ const App: React.FC = () => {
   };
 
   const aboutMeImage = () => {
-    return (
-      <Card>
-        <CardMedia
-          image={face}
-          style={{ height: 600, backgroundSize: "cover" }}
-        />
-      </Card>
-    );
+    return <Box style={imageStyle}></Box>;
   };
 
   const contentText = (
