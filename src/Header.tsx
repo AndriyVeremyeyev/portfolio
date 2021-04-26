@@ -1,12 +1,26 @@
 import React from "react";
 import { Avatar, Grid, Link } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import PersonIcon from "@material-ui/icons/Person";
 import BuildIcon from "@material-ui/icons/Build";
 import WorkIcon from "@material-ui/icons/Work";
 import BeachAccessIcon from "@material-ui/icons/BeachAccess";
 import ContactsIcon from "@material-ui/icons/Contacts";
 
+const useStyles = makeStyles({
+  linkClass: {
+    marginLeft: 10,
+    fontSize: 25,
+    "&:hover": {
+      fontWeight: "bold",
+      textDecoration: "none",
+    },
+  },
+});
+
 const Header: React.FC = () => {
+  const classes = useStyles();
+
   const headerItems = [
     { title: "About me", icon: <PersonIcon /> },
     { title: "Skills", icon: <BuildIcon /> },
@@ -28,7 +42,8 @@ const Header: React.FC = () => {
             <Avatar>{item.icon}</Avatar>
             <Link
               href={`#${item.title.toLowerCase().replace(" ", "")}`}
-              style={{ marginLeft: 10 }}
+              color="inherit"
+              className={classes.linkClass}
             >
               {item.title}
             </Link>

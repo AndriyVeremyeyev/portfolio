@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import {
   createMuiTheme,
   Grid,
@@ -17,7 +17,7 @@ import Header from "./Header";
 import Section from "./Section";
 import WorldMap from "./WorldMap";
 import EmailForm from "./EmailForm";
-import { skills } from "./data";
+import { frontEndSkills, backEndSkills } from "./data";
 
 const App: React.FC = () => {
   const theme = createMuiTheme({
@@ -29,8 +29,9 @@ const App: React.FC = () => {
   const imageStyle = {
     backgroundImage: `url(${face}
   )`,
+    backgroundPosition: "0 10%",
     backgroundSize: "cover",
-    height: 800,
+    height: 600,
   };
 
   const calc = (x: number, y: number) => [
@@ -57,9 +58,12 @@ const App: React.FC = () => {
     );
   };
 
-  const skillsContent = () => {
+  const skillsRow = (text: string, skills: string[]) => {
     return (
       <Grid container direction="row" justify="flex-start">
+        <Typography variant="h6" style={{ paddingTop: 5, marginRight: 20 }}>
+          {text}
+        </Typography>
         {skills.map((skill, index) => (
           <Chip
             key={`skill${index}`}
@@ -68,6 +72,17 @@ const App: React.FC = () => {
           />
         ))}
       </Grid>
+    );
+  };
+
+  const skillsContent = () => {
+    return (
+      <Fragment>
+        {skillsRow("Front end:", frontEndSkills)}
+        <Box style={{ marginTop: 20 }}>
+          {skillsRow("Back end:", backEndSkills)}
+        </Box>
+      </Fragment>
     );
   };
 
@@ -95,7 +110,7 @@ const App: React.FC = () => {
     textTwoSize: any = "h6"
   ) => {
     return (
-      <React.Fragment>
+      <Fragment>
         <Typography variant={textOneSize}>{textOne}</Typography>
         <Box style={{ marginTop: 20 }}>
           {textTwo.map((text, index) => (
@@ -108,7 +123,7 @@ const App: React.FC = () => {
             </Typography>
           ))}
         </Box>
-      </React.Fragment>
+      </Fragment>
     );
   };
 

@@ -19,14 +19,26 @@ export const mapData = {
   US: 0,
 };
 
-export const skills = [
+export const frontEndSkills = [
   "JavaScript",
-  "C#",
   "React",
   "Redux",
   "TypeScript",
+  "Jest",
   "HTML",
   "CSS",
   "Bootstrap",
   "Material UI",
+];
+
+export const backEndSkills = [
+  "Node.js",
+  "C#",
+  ".NET",
+  "ASP.NET",
+  "Core MVC",
+  "SQL",
+  "MySQL",
+  "PostgreSQL",
+  "Firebase",
 ];
