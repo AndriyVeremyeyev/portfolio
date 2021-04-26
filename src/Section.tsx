@@ -16,7 +16,7 @@ const Section: React.FC<SectionProps> = (props) => {
       justify="flex-start"
       spacing={3}
     >
-      <Grid item xs={12} sm={3} md={2}>
+      <Grid item xs={12} sm={3} md={2} xl={1}>
         <Grid
           container
           direction="row"
@@ -31,7 +31,7 @@ const Section: React.FC<SectionProps> = (props) => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={12} sm={9} md={10}>
+      <Grid item xs={12} sm={9} md={10} xl={6}>
         {sectionContent}
       </Grid>
     </Grid>
