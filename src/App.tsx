@@ -163,7 +163,9 @@ const App: React.FC = () => {
     return (
       <React.Fragment>
         <Grid item>{westSeattleContent}</Grid>
-        <Grid item>{battleshipContent}</Grid>
+        <Grid item style={{ marginTop: 30 }}>
+          {battleshipContent}
+        </Grid>
         <Grid item style={{ marginTop: 30 }}>
           {zineMakerContent}
         </Grid>
