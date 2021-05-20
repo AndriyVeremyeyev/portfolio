@@ -138,6 +138,11 @@ const App: React.FC = () => {
     contentText("West Seattle Bikes", "h5", [strings.westSeattleAbout])
   );
 
+  const battleshipContent = twoColumnContent(
+    springCard("card battleship"),
+    contentText("BattleShip", "h5", [strings.battleShipAbout])
+  );
+
   const zineMakerContent = twoColumnContent(
     springCard("card zine__maker"),
     contentText("Zine Maker", "h5", [
@@ -158,6 +163,7 @@ const App: React.FC = () => {
     return (
       <React.Fragment>
         <Grid item>{westSeattleContent}</Grid>
+        <Grid item>{battleshipContent}</Grid>
         <Grid item style={{ marginTop: 30 }}>
           {zineMakerContent}
         </Grid>
