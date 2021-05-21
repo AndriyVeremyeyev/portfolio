@@ -15,6 +15,10 @@
   background-image: url("./assets/west-seattle.jpg");
 }
 
+.battleship {
+  background-image: url("./assets/battleship.png");
+}
+
 .zine__maker {
   background-image: url("./assets/zine-maker.png");
 }
