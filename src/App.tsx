@@ -7,7 +7,6 @@ import {
   Chip,
   Box,
 } from "@material-ui/core";
-
 import face from "./assets/BP3-4245.jpg";
 import { useSpring, animated } from "react-spring";
 import "./styles.css";
@@ -18,6 +17,8 @@ import Section from "./Section";
 import WorldMap from "./WorldMap";
 import EmailForm from "./EmailForm";
 import { frontEndSkills, backEndSkills } from "./data";
+import { bounceIn } from "react-animations";
+import styled, { keyframes } from "styled-components";
 
 const App: React.FC = () => {
   const theme = createMuiTheme({
@@ -25,6 +26,12 @@ const App: React.FC = () => {
       fontFamily: "Open Sans",
     },
   });
+
+  const bounceInAnimation = keyframes`${bounceIn}`;
+
+  const BounceInDiv = styled.div`
+    animation: 5s ${bounceInAnimation};
+  `;
 
   const imageStyle = {
     backgroundImage: `url(${face}
