@@ -43,3 +43,10 @@ export const backEndSkills = [
   "PostgreSQL",
   "Firebase",
 ];
+
+export const links = {
+  westSeattle: "https://west-seattle-bikes.web.app/",
+  battleship: "https://a-battleship.web.app/",
+  zineClient: "https://github.com/AndriyVeremyeyev/ZineClient.Solution",
+  nurScheduler: "https://nurscheduler.netlify.app/",
+};

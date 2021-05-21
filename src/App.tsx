@@ -8,7 +8,6 @@ import {
   Box,
 } from "@material-ui/core";
 import face from "./assets/BP3-4245.jpg";
-// import { useSpring, animated } from "react-spring";
 import "./styles.css";
 import strings from "./strings";
 import Footer from "./Footer";
@@ -16,13 +15,12 @@ import Header from "./Header";
 import Section from "./Section";
 import WorldMap from "./WorldMap";
 import EmailForm from "./EmailForm";
-import { frontEndSkills, backEndSkills } from "./data";
-import { bounceIn } from "react-animations";
-import styled, { keyframes } from "styled-components";
-import battleship from "./assets/battleship.png";
+import { frontEndSkills, backEndSkills, links } from "./data";
+import battleShip from "./assets/battleship.png";
 import westSeattle from "./assets/west-seattle.jpg";
 import nurseScheduler from "./assets/nurse-scheduler.jpg";
 import zineMaker from "./assets/zine-maker.png";
+import Content from "./Content";
 
 const App: React.FC = () => {
   const theme = createMuiTheme({
@@ -31,12 +29,6 @@ const App: React.FC = () => {
     },
   });
 
-  const bounceInAnimation = keyframes`${bounceIn}`;
-
-  const BounceInDiv = styled.div`
-    animation: 5s ${bounceInAnimation};
-  `;
-
   const imageStyle = {
     backgroundImage: `url(${face}
   )`,
@@ -44,39 +36,6 @@ const App: React.FC = () => {
     backgroundSize: "cover",
     height: 600,
   };
-
-  const wrapImage = (img: any) => {
-    return {
-      backgroundImage: `url(${img}
-        )`,
-      backgroundSize: "cover",
-      width: "20rem",
-    };
-  };
-
-  // const calc = (x: number, y: number) => [
-  //   -(y - window.innerHeight / 2) / 20,
-  //   (x - window.innerWidth / 2) / 20,
-  //   1.1,
-  // ];
-  // const trans: any = (x: number, y: number, s: number) =>
-  //   `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
-
-  // const [props, set] = useSpring(() => ({
-  //   xys: [0, 0, 1],
-  //   config: { mass: 5, tension: 350, friction: 40 },
-  // }));
-
-  // const springCard = (springCardClass: any) => {
-  //   return (
-  //     <animated.div
-  //       className={springCardClass}
-  //       onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
-  //       onMouseLeave={() => set({ xys: [0, 0, 1] })}
-  //       style={{ transform: props.xys.interpolate(trans) }}
-  //     />
-  //   );
-  // };
 
   const skillsRow = (text: string, skills: string[]) => {
     return (
@@ -147,58 +106,48 @@ const App: React.FC = () => {
     );
   };
 
-  const aboutMeText = contentText("", "h5", [
-    strings.aboutMeOne,
-    strings.aboutMeTwo,
-  ]);
+  const aboutMeText = contentText(
+    "",
+    "h5",
+    [strings.aboutMeOne, strings.aboutMeTwo],
+    "h6"
+  );
   const aboutMeContent = twoColumnContent(aboutMeImage(), aboutMeText);
 
-  const westSeattleContent = twoColumnContent(
-    <BounceInDiv>
-      <Box style={wrapImage(westSeattle)}></Box>
-    </BounceInDiv>,
-    contentText("West Seattle Bikes", "h5", [strings.westSeattleAbout])
-  );
-
-  const battleshipContent = twoColumnContent(
-    <BounceInDiv>
-      <Box style={wrapImage(battleship)}></Box>
-    </BounceInDiv>,
-    contentText("BattleShip", "h5", [strings.battleShipAbout])
-  );
-
-  const zineMakerContent = twoColumnContent(
-    <BounceInDiv>
-      <Box style={wrapImage(zineMaker)}></Box>
-    </BounceInDiv>,
-    contentText("Zine Maker", "h5", [
-      strings.zineMakerAboutOne,
-      strings.zineMakerAboutTwo,
-    ])
-  );
-
-  const nurseSchedulerContent = twoColumnContent(
-    <BounceInDiv>
-      <Box style={wrapImage(nurseScheduler)}></Box>
-    </BounceInDiv>,
-    contentText("Nurse Scheduler", "h5", [
-      strings.nurseSchedulerAboutOne,
-      strings.nurseSchedulerAboutTwo,
-    ])
-  );
+  const projectsData = [
+    {
+      contentText: [strings.westSeattleAbout],
+      image: westSeattle,
+      link: links.westSeattle,
+      title: strings.westSeattleTitle,
+    },
+    {
+      contentText: [strings.battleShipAbout],
+      image: battleShip,
+      link: links.battleship,
+      title: strings.battleShipTitle,
+    },
+    {
+      contentText: [strings.zineMakerAboutOne, strings.zineMakerAboutTwo],
+      image: zineMaker,
+      link: links.zineClient,
+      title: strings.zineMakerTitle,
+    },
+    {
+      contentText: [strings.nurseSchedulerAboutOne, strings.zineMakerAboutTwo],
+      image: nurseScheduler,
+      link: links.nurScheduler,
+      title: strings.nurseSchedulerTitle,
+    },
+  ];
 
   const projectsContent = () => {
     return (
-      <React.Fragment>
-        <Grid item>{westSeattleContent}</Grid>
-        <Grid item>{battleshipContent}</Grid>
-        <Grid item style={{ marginTop: 30 }}>
-          {zineMakerContent}
-        </Grid>
-        <Grid item style={{ marginTop: 30 }}>
-          {nurseSchedulerContent}
-        </Grid>
-      </React.Fragment>
+      <Fragment>
+        {projectsData.map((data) => (
+          <Content data={data} />
+        ))}
+      </Fragment>
     );
   };
 

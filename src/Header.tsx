@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     marginLeft: 10,
     fontSize: 25,
     "&:hover": {
-      fontWeight: "bold",
+      color: "red",
       textDecoration: "none",
     },
   },
