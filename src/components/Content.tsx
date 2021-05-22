@@ -1,20 +1,10 @@
 import React from "react";
 import { Grid, Typography, Box, Link } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import { bounceIn } from "react-animations";
 import styled, { keyframes } from "styled-components";
 import ImageWrapper from "./ImageWrapper";
 import { ImageData } from "../types";
-
-const useStyles = makeStyles({
-  linkClass: {
-    marginLeft: 10,
-    fontSize: 25,
-    "&:hover": {
-      color: "red",
-    },
-  },
-});
+import LinkWrapper from "./LinkWrapper";
 
 type ContentData = {
   contentText: string[];
@@ -32,7 +22,6 @@ const Content: React.FC<ContentProps> = (props) => {
   const {
     data: { contentText, image, imageData, link, title },
   } = props;
-  const classes = useStyles();
 
   const bounceInAnimation = keyframes`${bounceIn}`;
 
@@ -56,14 +45,9 @@ const Content: React.FC<ContentProps> = (props) => {
       </Grid>
       <Grid item xs={12} md={5}>
         {title.length ? (
-          <Link
-            href={link}
-            target="_blank"
-            color="inherit"
-            className={classes.linkClass}
-          >
+          <LinkWrapper link={link}>
             <Typography variant="h5">{title}</Typography>
-          </Link>
+          </LinkWrapper>
         ) : null}
         <Box style={{ marginTop: 20 }}>
           {contentText.map((text: string, index: number) => (

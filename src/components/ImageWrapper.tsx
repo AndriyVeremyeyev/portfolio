@@ -1,6 +1,16 @@
 import React from "react";
 import { Box } from "@material-ui/core";
 import { ImageData } from "../types";
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  someImage: {
+    filter: "grayscale(100%)",
+    "&:hover": {
+      filter: "grayscale(0%)",
+    },
+  },
+});
 
 type ImageWrapperProps = {
   image: any;
@@ -9,6 +19,7 @@ type ImageWrapperProps = {
 
 const ImageWrapper: React.FC<ImageWrapperProps> = (props) => {
   const { image, imageData } = props;
+  const classes = useStyles();
 
   const handleImageStyle = (img: any) => {
     return {
@@ -20,7 +31,9 @@ const ImageWrapper: React.FC<ImageWrapperProps> = (props) => {
     };
   };
 
-  return <Box style={handleImageStyle(image)}></Box>;
+  return (
+    <Box className={classes.someImage} style={handleImageStyle(image)}></Box>
+  );
 };
 
 export default ImageWrapper;
