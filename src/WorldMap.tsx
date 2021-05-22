@@ -1,7 +1,7 @@
 import React from "react";
 import { VectorMap } from "react-jvectormap";
 import { Box } from "@material-ui/core";
-import { mapData } from "./data";
+import { mapData } from "./database";
 
 const WorldMap: React.FC = () => {
   return (

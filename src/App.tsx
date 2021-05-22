@@ -7,20 +7,26 @@ import {
   Chip,
   Box,
 } from "@material-ui/core";
-import face from "./assets/BP3-4245.jpg";
+import aboutMeImage from "./assets/BP3-4245.jpg";
 import "./styles.css";
 import strings from "./strings";
 import Footer from "./Footer";
 import Header from "./Header";
-import Section from "./Section";
+import Section from "./components/Section";
 import WorldMap from "./WorldMap";
 import EmailForm from "./EmailForm";
-import { frontEndSkills, backEndSkills, links } from "./data";
-import battleShip from "./assets/battleship.png";
-import westSeattle from "./assets/west-seattle.jpg";
-import nurseScheduler from "./assets/nurse-scheduler.jpg";
-import zineMaker from "./assets/zine-maker.png";
-import Content from "./Content";
+import {
+  aboutMeImageData,
+  backEndSkills,
+  frontEndSkills,
+  links,
+  projectImageData,
+} from "./database";
+import battleShipImage from "./assets/battleship.png";
+import westSeattleImage from "./assets/west-seattle.jpg";
+import nurseSchedulerImage from "./assets/nurse-scheduler.jpg";
+import zineMakerImage from "./assets/zine-maker.png";
+import Content from "./components/Content";
 
 const App: React.FC = () => {
   const theme = createMuiTheme({
@@ -29,13 +35,36 @@ const App: React.FC = () => {
     },
   });
 
-  const imageStyle = {
-    backgroundImage: `url(${face}
-  )`,
-    backgroundPosition: "0 10%",
-    backgroundSize: "cover",
-    height: 600,
-  };
+  const projectsData = [
+    {
+      contentText: [strings.westSeattleAbout],
+      image: westSeattleImage,
+      imageData: projectImageData,
+      link: links.westSeattle,
+      title: strings.westSeattleTitle,
+    },
+    {
+      contentText: [strings.battleShipAbout],
+      image: battleShipImage,
+      imageData: projectImageData,
+      link: links.battleship,
+      title: strings.battleShipTitle,
+    },
+    {
+      contentText: [strings.zineMakerAboutOne, strings.zineMakerAboutTwo],
+      image: zineMakerImage,
+      imageData: projectImageData,
+      link: links.zineClient,
+      title: strings.zineMakerTitle,
+    },
+    {
+      contentText: [strings.nurseSchedulerAboutOne, strings.zineMakerAboutTwo],
+      image: nurseSchedulerImage,
+      imageData: projectImageData,
+      link: links.nurScheduler,
+      title: strings.nurseSchedulerTitle,
+    },
+  ];
 
   const skillsRow = (text: string, skills: string[]) => {
     return (
@@ -78,69 +107,6 @@ const App: React.FC = () => {
     );
   };
 
-  const aboutMeImage = () => {
-    return <Box style={imageStyle}></Box>;
-  };
-
-  const contentText = (
-    textOne = "",
-    textOneSize: any = "h5",
-    textTwo = [""],
-    textTwoSize: any = "h6"
-  ) => {
-    return (
-      <Fragment>
-        <Typography variant={textOneSize}>{textOne}</Typography>
-        <Box style={{ marginTop: 20 }}>
-          {textTwo.map((text, index) => (
-            <Typography
-              key={`text${index}`}
-              variant={textTwoSize}
-              style={{ marginTop: 15 }}
-            >
-              {text}
-            </Typography>
-          ))}
-        </Box>
-      </Fragment>
-    );
-  };
-
-  const aboutMeText = contentText(
-    "",
-    "h5",
-    [strings.aboutMeOne, strings.aboutMeTwo],
-    "h6"
-  );
-  const aboutMeContent = twoColumnContent(aboutMeImage(), aboutMeText);
-
-  const projectsData = [
-    {
-      contentText: [strings.westSeattleAbout],
-      image: westSeattle,
-      link: links.westSeattle,
-      title: strings.westSeattleTitle,
-    },
-    {
-      contentText: [strings.battleShipAbout],
-      image: battleShip,
-      link: links.battleship,
-      title: strings.battleShipTitle,
-    },
-    {
-      contentText: [strings.zineMakerAboutOne, strings.zineMakerAboutTwo],
-      image: zineMaker,
-      link: links.zineClient,
-      title: strings.zineMakerTitle,
-    },
-    {
-      contentText: [strings.nurseSchedulerAboutOne, strings.zineMakerAboutTwo],
-      image: nurseScheduler,
-      link: links.nurScheduler,
-      title: strings.nurseSchedulerTitle,
-    },
-  ];
-
   const projectsContent = () => {
     return (
       <Fragment>
@@ -151,8 +117,21 @@ const App: React.FC = () => {
     );
   };
 
-  const sections = [
-    { title: "About me", content: aboutMeContent },
+  const sectionsData = [
+    {
+      title: "About me",
+      content: (
+        <Content
+          data={{
+            contentText: [strings.aboutMeOne, strings.aboutMeTwo],
+            image: aboutMeImage,
+            imageData: aboutMeImageData,
+            link: "",
+            title: "",
+          }}
+        />
+      ),
+    },
     { title: "Skills", content: skillsContent() },
     { title: "Projects", content: projectsContent() },
     { title: "Hobbies", content: <WorldMap /> },
@@ -162,7 +141,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <Header />
-      {sections.map((section, index) => (
+      {sectionsData.map((section, index) => (
         <div id={section.title.toLowerCase().replace(" ", "")}>
           <Section
             key={`section${index}`}

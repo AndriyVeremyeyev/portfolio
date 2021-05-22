@@ -30,6 +30,7 @@ export const frontEndSkills = [
   "Bootstrap",
   "Material UI",
   "SASS",
+  "Figma",
 ];
 
 export const backEndSkills = [
@@ -50,3 +51,6 @@ export const links = {
   zineClient: "https://github.com/AndriyVeremyeyev/ZineClient.Solution",
   nurScheduler: "https://nurscheduler.netlify.app/",
 };
+
+export const projectImageData = { height: 30, backgroundPosition: [0, 0] };
+export const aboutMeImageData = { height: 40, backgroundPosition: [0, 10] };

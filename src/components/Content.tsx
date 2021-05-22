@@ -3,6 +3,8 @@ import { Grid, Typography, Box, Link } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { bounceIn } from "react-animations";
 import styled, { keyframes } from "styled-components";
+import ImageWrapper from "./ImageWrapper";
+import { ImageData } from "../types";
 
 const useStyles = makeStyles({
   linkClass: {
@@ -17,6 +19,7 @@ const useStyles = makeStyles({
 type ContentData = {
   contentText: string[];
   image: any;
+  imageData: ImageData;
   link: string;
   title: string;
 };
@@ -27,7 +30,7 @@ type ContentProps = {
 
 const Content: React.FC<ContentProps> = (props) => {
   const {
-    data: { contentText, image, link, title },
+    data: { contentText, image, imageData, link, title },
   } = props;
   const classes = useStyles();
 
@@ -37,34 +40,31 @@ const Content: React.FC<ContentProps> = (props) => {
     animation: 5s ${bounceInAnimation};
   `;
 
-  const wrapImage = (img: any) => {
-    return {
-      backgroundImage: `url(${img}
-        )`,
-      backgroundSize: "cover",
-      height: "25rem",
-    };
-  };
-
   return (
     <Grid container direction="row" justify="flex-start" spacing={3}>
       <Grid item xs={12} md={5}>
-        <BounceInDiv>
-          <Link href={link} target="_blank" color="inherit">
-            <Box style={wrapImage(image)}></Box>
-          </Link>
-        </BounceInDiv>
+        {link.length ? (
+          <BounceInDiv>
+            <Link href={link} target="_blank" color="inherit">
+              <ImageWrapper image={image} imageData={imageData} />
+            </Link>
+          </BounceInDiv>
+        ) : (
+          <ImageWrapper image={image} imageData={imageData} />
+        )}
         ,
       </Grid>
       <Grid item xs={12} md={5}>
-        <Link
-          href={link}
-          target="_blank"
-          color="inherit"
-          className={classes.linkClass}
-        >
-          <Typography variant="h5">{title}</Typography>
-        </Link>
+        {title.length ? (
+          <Link
+            href={link}
+            target="_blank"
+            color="inherit"
+            className={classes.linkClass}
+          >
+            <Typography variant="h5">{title}</Typography>
+          </Link>
+        ) : null}
         <Box style={{ marginTop: 20 }}>
           {contentText.map((text: string, index: number) => (
             <Typography
