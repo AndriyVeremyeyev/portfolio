@@ -9,7 +9,7 @@
 .link::after {
   position: absolute;
   width: 100%;
-  height: 1px;
+  height: 0.5px;
   background: currentColor;
   top: 100%;
   left: 0;
@@ -18,10 +18,6 @@
 
 .link::before {
   content: "";
-}
-
-.link--elara {
-  font-size: 1.375rem;
 }
 
 .link--elara::before {

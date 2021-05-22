@@ -5,10 +5,10 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
   someImage: {
-    filter: "grayscale(100%)",
-    "&:hover": {
-      filter: "grayscale(0%)",
-    },
+    // filter: "grayscale(100%)",
+    // "&:hover": {
+    //   filter: "grayscale(0%)",
+    // },
   },
 });
 
