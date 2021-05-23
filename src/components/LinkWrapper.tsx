@@ -4,17 +4,18 @@ import "./linkWrapper.css";
 
 type LinkWrapperProps = {
   link: string;
+  blank: boolean;
   children: JSX.Element | string;
 };
 
 const LinkWrapper: React.FC<LinkWrapperProps> = (props) => {
-  const { link, children } = props;
+  const { blank, link, children } = props;
 
   return (
     <Link
       href={link}
-      target="_blank"
-      color="inherit"
+      target={blank ? "_blank" : undefined}
+      // color="inherit"
       className="link link--elara"
     >
       <span>{children}</span>

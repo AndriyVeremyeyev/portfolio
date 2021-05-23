@@ -1,6 +1,6 @@
 import React from "react";
 import { Box } from "@material-ui/core";
-import { ImageData } from "../types";
+import { ImageData } from "../util/types";
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
@@ -28,6 +28,7 @@ const ImageWrapper: React.FC<ImageWrapperProps> = (props) => {
       backgroundSize: "cover",
       backgroundPosition: `${imageData.backgroundPosition[0]}% ${imageData.backgroundPosition[1]}%`,
       height: `${imageData.height}rem`,
+      width: "90%",
     };
   };
 

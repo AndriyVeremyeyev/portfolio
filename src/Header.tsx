@@ -19,14 +19,17 @@ const Header: React.FC = () => {
     <Grid
       container
       direction="row"
-      justify="space-evenly"
-      style={{ marginTop: 50, marginLeft: 10, marginRight: 10 }}
+      justify="space-around"
+      style={{ marginTop: "2rem" }}
     >
       {headerItems.map((item, index) => (
         <Grid item key={`headeritem${index}`}>
           <Grid container direction="row" alignItems="center">
             <Avatar style={{ marginRight: "1rem" }}>{item.icon}</Avatar>
-            <LinkWrapper link={`#${item.title.toLowerCase().replace(" ", "")}`}>
+            <LinkWrapper
+              blank={false}
+              link={`#${item.title.toLowerCase().replace(" ", "")}`}
+            >
               <Typography style={{ fontSize: "1.3rem" }}>
                 {item.title}
               </Typography>

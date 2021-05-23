@@ -9,7 +9,7 @@ import {
 import { useFormik } from "formik";
 import * as yup from "yup";
 import * as emailjs from "emailjs-com";
-import strings from "./strings";
+import strings from "./util/strings";
 
 const EmailForm: React.FC = () => {
   const initialValues = { name: "", email: "", subject: "", message: "" };
@@ -125,7 +125,12 @@ const EmailForm: React.FC = () => {
                 rows={field.rows}
               />
             ))}
-            <Button variant="contained" type="submit" style={{ marginTop: 20 }}>
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              style={{ marginTop: 20 }}
+            >
               Submit
             </Button>
           </Grid>

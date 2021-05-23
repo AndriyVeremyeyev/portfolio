@@ -12,7 +12,7 @@ const Section: React.FC<SectionProps> = (props) => {
     <Grid
       container
       direction="row"
-      style={{ marginTop: 30 }}
+      style={{ marginTop: "2rem" }}
       justify="flex-start"
       spacing={3}
     >
@@ -24,10 +24,14 @@ const Section: React.FC<SectionProps> = (props) => {
           style={{ height: "100%" }}
         >
           <Grid item>
-            <Typography variant="h4">{sectionTitle}</Typography>
+            <Typography style={{ fontSize: "2rem" }}>{sectionTitle}</Typography>
           </Grid>
           <Grid item>
-            <Divider orientation="vertical" style={{ width: 2 }} />
+            <Divider
+              variant="fullWidth"
+              orientation="vertical"
+              style={{ width: 2 }}
+            />
           </Grid>
         </Grid>
       </Grid>

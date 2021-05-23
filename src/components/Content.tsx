@@ -3,7 +3,7 @@ import { Grid, Typography, Box, Link } from "@material-ui/core";
 import { bounceIn } from "react-animations";
 import styled, { keyframes } from "styled-components";
 import ImageWrapper from "./ImageWrapper";
-import { ImageData } from "../types";
+import { ImageData } from "../util/types";
 import LinkWrapper from "./LinkWrapper";
 
 type ContentData = {
@@ -30,8 +30,8 @@ const Content: React.FC<ContentProps> = (props) => {
   `;
 
   return (
-    <Grid container direction="row" justify="flex-start" spacing={3}>
-      <Grid item xs={12} md={5}>
+    <Grid container direction="row" justify="center" spacing={3}>
+      <Grid item xs={12} md={4}>
         {link.length ? (
           <BounceInDiv>
             <Link href={link} target="_blank" color="inherit">
@@ -43,18 +43,19 @@ const Content: React.FC<ContentProps> = (props) => {
         )}
         ,
       </Grid>
-      <Grid item xs={12} md={5}>
+      <Grid item xs={12} md={6}>
         {title.length ? (
-          <LinkWrapper link={link}>
-            <Typography variant="h5">{title}</Typography>
+          <LinkWrapper blank link={link}>
+            <Typography style={{ fontSize: "1.6rem", fontWeight: "bold" }}>
+              {title}
+            </Typography>
           </LinkWrapper>
         ) : null}
-        <Box style={{ marginTop: 20 }}>
+        <Box style={{ marginTop: "1rem" }}>
           {contentText.map((text: string, index: number) => (
             <Typography
               key={`text${index}`}
-              variant="h6"
-              style={{ marginTop: 15 }}
+              style={{ marginTop: "1rem", fontSize: "1.1rem" }}
             >
               {text}
             </Typography>

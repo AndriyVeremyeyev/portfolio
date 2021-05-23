@@ -52,5 +52,5 @@ export const links = {
   nurScheduler: "https://nurscheduler.netlify.app/",
 };
 
-export const projectImageData = { height: 30, backgroundPosition: [0, 0] };
+export const projectImageData = { height: 20, backgroundPosition: [50, 0] };
 export const aboutMeImageData = { height: 40, backgroundPosition: [0, 10] };
