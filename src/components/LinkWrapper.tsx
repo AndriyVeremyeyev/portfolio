@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "@material-ui/core";
+import { Link, useTheme } from "@material-ui/core";
 import "./linkWrapper.css";
 
 type LinkWrapperProps = {
@@ -10,13 +10,17 @@ type LinkWrapperProps = {
 
 const LinkWrapper: React.FC<LinkWrapperProps> = (props) => {
   const { blank, link, children } = props;
+  const theme = useTheme();
+  const {
+    palette: { primary },
+  } = theme;
 
   return (
     <Link
       href={link}
       target={blank ? "_blank" : undefined}
-      // color="inherit"
       className="link link--elara"
+      style={{ color: primary.dark }}
     >
       <span>{children}</span>
     </Link>

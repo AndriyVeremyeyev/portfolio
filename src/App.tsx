@@ -15,16 +15,13 @@ import { grey, indigo } from "@material-ui/core/colors";
 import Skills from "./Skills";
 import Projects from "./Projects";
 
-// type PaletteColor = {
-//   light?: string;
-//   main: string;
-//   dark?: string;
-//   contrastText?: string;
-// };
-
 const theme = createMuiTheme({
   palette: {
-    primary: indigo,
+    primary: {
+      light: indigo[200],
+      main: indigo[500],
+      dark: indigo[800],
+    },
     secondary: grey,
   },
   typography: {

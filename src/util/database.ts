@@ -53,4 +53,4 @@ export const links = {
 };
 
 export const projectImageData = { height: 20, backgroundPosition: [50, 0] };
-export const aboutMeImageData = { height: 40, backgroundPosition: [0, 10] };
+export const aboutMeImageData = { height: 40, backgroundPosition: [60, 10] };

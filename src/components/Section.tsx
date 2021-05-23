@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider, Grid, Typography } from "@material-ui/core";
+import { Divider, Grid, Typography, useTheme } from "@material-ui/core";
 
 type SectionProps = {
   sectionTitle: any;
@@ -8,6 +8,11 @@ type SectionProps = {
 
 const Section: React.FC<SectionProps> = (props) => {
   const { sectionTitle, sectionContent } = props;
+  const theme = useTheme();
+  const {
+    palette: { primary },
+  } = theme;
+
   return (
     <Grid
       container
@@ -30,7 +35,7 @@ const Section: React.FC<SectionProps> = (props) => {
             <Divider
               variant="fullWidth"
               orientation="vertical"
-              style={{ width: 2 }}
+              style={{ width: 2, backgroundColor: primary.light }}
             />
           </Grid>
         </Grid>
