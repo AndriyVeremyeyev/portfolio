@@ -11,16 +11,16 @@ import EmailForm from "./EmailForm";
 import { aboutMeImageData } from "./util/database";
 
 import Content from "./components/Content";
-import { grey, indigo } from "@material-ui/core/colors";
+import { grey, lightBlue } from "@material-ui/core/colors";
 import Skills from "./Skills";
 import Projects from "./Projects";
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: indigo[200],
-      main: indigo[500],
-      dark: indigo[800],
+      light: lightBlue[200],
+      main: lightBlue[500],
+      dark: lightBlue[800],
     },
     secondary: grey,
   },

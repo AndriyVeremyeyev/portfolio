@@ -35,7 +35,7 @@ const Section: React.FC<SectionProps> = (props) => {
             <Divider
               variant="fullWidth"
               orientation="vertical"
-              style={{ width: 2, backgroundColor: primary.light }}
+              style={{ width: 2, backgroundColor: primary.main }}
             />
           </Grid>
         </Grid>

@@ -16,6 +16,7 @@ const strings = {
   nurseSchedulerAboutOne: `This application was made to ease the work of a nurse scheduler. The nurse scheduler can input the nurse's requests which consist of vacation start date, vacation end date, a number of days requested off & additional comments as required.`,
   nurseSchedulerAboutTwo: `This application also allows a nurse scheduler to add work requests made by nurses and display it for references and update the due dates for form submission.`,
   nurseSchedulerTitle: "Nurse Scheduler",
+  hobbies: `Travelling is one of my passions. I had the idea to keep track of the countries visited, and when it became necessary to make my own site, I decided to do it here, including as an opportunity to experiment with various React libraries.`,
   submittedEmail: "Your email was successfully submitted",
 };
 

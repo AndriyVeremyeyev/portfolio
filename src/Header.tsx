@@ -30,7 +30,7 @@ const Header: React.FC = () => {
         <Grid item key={`headeritem${index}`}>
           <Grid container direction="row" alignItems="center">
             <Avatar
-              style={{ marginRight: "1rem", backgroundColor: primary.main }}
+              style={{ marginRight: "1rem", backgroundColor: primary.dark }}
             >
               {item.icon}
             </Avatar>

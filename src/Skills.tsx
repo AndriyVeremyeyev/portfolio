@@ -29,7 +29,7 @@ const Skills: React.FC = () => {
               height: "2.5rem",
               fontSize: "1rem",
               marginRight: "1rem",
-              backgroundColor: primary.main,
+              backgroundColor: primary.light,
             }}
           />
         ))}
