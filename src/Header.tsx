@@ -24,10 +24,14 @@ const Header: React.FC = () => {
       container
       direction="row"
       justify="space-between"
-      style={{ marginTop: "2rem", padding: "0 0.5rem" }}
+      style={{
+        marginTop: "1rem",
+        padding: "0 0.5rem",
+      }}
+      xl={7}
     >
       {headerItems.map((item, index) => (
-        <Grid item key={`headeritem${index}`}>
+        <Grid item key={`headerItem${index}`}>
           <Grid container direction="row" alignItems="center">
             <Avatar
               style={{ marginRight: "1rem", backgroundColor: primary.dark }}

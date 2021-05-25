@@ -41,8 +41,8 @@ const Projects: React.FC = () => {
 
   return (
     <Fragment>
-      {projectsData.map((data) => (
-        <Content data={data} />
+      {projectsData.map((data, index) => (
+        <Content data={data} key={`project${index}`} />
       ))}
     </Fragment>
   );

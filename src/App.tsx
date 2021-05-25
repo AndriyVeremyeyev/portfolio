@@ -11,7 +11,7 @@ import EmailForm from "./EmailForm";
 import { aboutMeImageData } from "./util/database";
 
 import Content from "./components/Content";
-import { grey, lightBlue } from "@material-ui/core/colors";
+import { blueGrey, lightBlue } from "@material-ui/core/colors";
 import Skills from "./Skills";
 import Projects from "./Projects";
 
@@ -22,7 +22,11 @@ const theme = createMuiTheme({
       main: lightBlue[500],
       dark: lightBlue[800],
     },
-    secondary: grey,
+    secondary: {
+      light: blueGrey[200],
+      main: blueGrey[500],
+      dark: blueGrey[800],
+    },
   },
   typography: {
     fontFamily: "Roboto",
@@ -62,13 +66,15 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <Header />
       {sectionsData.map((section, index) => (
-        <div id={section.title.toLowerCase().replace(" ", "")}>
+        <Box
+          id={section.title.toLowerCase().replace(" ", "")}
+          key={`section${index}`}
+        >
           <Section
-            key={`section${index}`}
             sectionTitle={section.title}
             sectionContent={section.content}
           />
-        </div>
+        </Box>
       ))}
       <Footer />
     </ThemeProvider>

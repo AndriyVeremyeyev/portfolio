@@ -40,6 +40,7 @@ const Footer: React.FC = () => {
       direction="row"
       justify="flex-end"
       style={{ marginTop: "3rem", paddingRight: "1rem" }}
+      xl={7}
     >
       {footerItems.map((item, index) => (
         <Grid key={`footerItem${index}`} item style={{ marginLeft: "3rem" }}>
