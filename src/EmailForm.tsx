@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import {
   Grid,
   TextField,
@@ -104,42 +104,44 @@ const EmailForm: React.FC = () => {
   ];
 
   return (
-    <Fragment>
-      <Collapse in={showForm[0]} timeout={1000}>
-        <form onSubmit={formik.handleSubmit}>
-          <Grid container direction="column">
-            {textFields.map((field, index) => (
-              <TextField
-                key={`textField${index}`}
-                id={field.name}
-                name={field.name}
-                label={field.label}
-                type={field.type}
-                value={field.values}
-                variant="outlined"
-                style={{ marginTop: 10 }}
-                onChange={formik.handleChange}
-                error={field.touched && Boolean(field.errors)}
-                helperText={field.touched && field.errors}
-                multiline={field.multiline}
-                rows={field.rows}
-              />
-            ))}
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              style={{ marginTop: 20 }}
-            >
-              Submit
-            </Button>
-          </Grid>
-        </form>
-      </Collapse>
-      <Collapse in={showForm[1]} timeout={1000}>
-        <Typography variant="h6">{strings.submittedEmail}</Typography>
-      </Collapse>
-    </Fragment>
+    <Grid container>
+      <Grid item xs={12} md={7}>
+        <Collapse in={showForm[0]} timeout={1000}>
+          <form onSubmit={formik.handleSubmit}>
+            <Grid container direction="column">
+              {textFields.map((field, index) => (
+                <TextField
+                  key={`textField${index}`}
+                  id={field.name}
+                  name={field.name}
+                  label={field.label}
+                  type={field.type}
+                  value={field.values}
+                  variant="outlined"
+                  style={{ marginTop: 10 }}
+                  onChange={formik.handleChange}
+                  error={field.touched && Boolean(field.errors)}
+                  helperText={field.touched && field.errors}
+                  multiline={field.multiline}
+                  rows={field.rows}
+                />
+              ))}
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                style={{ marginTop: 20 }}
+              >
+                Submit
+              </Button>
+            </Grid>
+          </form>
+        </Collapse>
+        <Collapse in={showForm[1]} timeout={1000}>
+          <Typography variant="h6">{strings.submittedEmail}</Typography>
+        </Collapse>
+      </Grid>
+    </Grid>
   );
 };
 

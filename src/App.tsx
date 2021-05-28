@@ -54,11 +54,7 @@ const App: React.FC = () => {
     { title: "Hobbies", content: <WorldMap /> },
     {
       title: "Contacts",
-      content: (
-        <Box style={{ width: "60%" }}>
-          <EmailForm />{" "}
-        </Box>
-      ),
+      content: <EmailForm />,
     },
   ];
 

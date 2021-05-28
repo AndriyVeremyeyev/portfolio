@@ -31,21 +31,38 @@ const Header: React.FC = () => {
       xl={7}
     >
       {headerItems.map((item, index) => (
-        <Grid item key={`headerItem${index}`}>
-          <Grid container direction="row" alignItems="center">
-            <Avatar
-              style={{ marginRight: "1rem", backgroundColor: primary.dark }}
-            >
-              {item.icon}
-            </Avatar>
-            <LinkWrapper
-              blank={false}
-              link={`#${item.title.toLowerCase().replace(" ", "")}`}
-            >
-              <Typography style={{ fontSize: "1.3rem" }}>
-                {item.title}
-              </Typography>
-            </LinkWrapper>
+        <Grid
+          item
+          key={`headerItem${index}`}
+          xs={12}
+          sm={2}
+          style={{ marginTop: "1rem" }}
+        >
+          <Grid
+            container
+            direction="row"
+            alignItems="center"
+            justify="flex-start"
+          >
+            <Grid item>
+              {" "}
+              <Avatar
+                style={{ marginRight: "1rem", backgroundColor: primary.dark }}
+              >
+                {item.icon}
+              </Avatar>
+            </Grid>
+            <Grid item>
+              {" "}
+              <LinkWrapper
+                blank={false}
+                link={`#${item.title.toLowerCase().replace(" ", "")}`}
+              >
+                <Typography style={{ fontSize: "1.3rem" }}>
+                  {item.title}
+                </Typography>
+              </LinkWrapper>
+            </Grid>
           </Grid>
         </Grid>
       ))}

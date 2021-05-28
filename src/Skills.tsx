@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Grid, Typography, Chip, Box, useTheme } from "@material-ui/core";
+import { Grid, Typography, Chip, useTheme } from "@material-ui/core";
 import { backEndSkills, frontEndSkills } from "./util/database";
 
 const Skills: React.FC = () => {
@@ -8,41 +8,47 @@ const Skills: React.FC = () => {
     palette: { primary },
   } = theme;
 
-  const skillsRow = (text: string, skills: string[]) => {
+  const skillsRow = (title: string, skills: string[]) => {
     return (
-      <Grid container direction="row" justify="flex-start">
-        <Typography
-          style={{
-            paddingTop: "0.1rem",
-            marginRight: "1rem",
-            fontSize: "1.3rem",
-          }}
-        >
-          {text}
-        </Typography>
-        {skills.map((skill, index) => (
-          <Chip
-            color="primary"
-            key={`skill${index}`}
-            label={skill}
+      <Grid container direction="row">
+        <Grid item xs={3} md={2}>
+          <Typography
             style={{
-              height: "2.5rem",
-              fontSize: "1rem",
+              paddingTop: "1rem",
               marginRight: "1rem",
-              backgroundColor: primary.light,
+              fontSize: "1.3rem",
             }}
-          />
-        ))}
+          >
+            {title}
+          </Typography>
+        </Grid>
+        <Grid item xs={9} md={10}>
+          <Grid container direction="row">
+            {skills.map((skill, index) => (
+              <Grid item style={{ marginTop: "1rem" }}>
+                <Chip
+                  color="primary"
+                  key={`skill${index}`}
+                  label={skill}
+                  style={{
+                    height: "2.5rem",
+                    fontSize: "1rem",
+                    marginRight: "1rem",
+                    backgroundColor: primary.light,
+                  }}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </Grid>
       </Grid>
     );
   };
 
   return (
     <Fragment>
-      {skillsRow("Front end:", frontEndSkills)}
-      <Box style={{ marginTop: 20 }}>
-        {skillsRow("Back end:", backEndSkills)}
-      </Box>
+      {skillsRow("Front-end: ", frontEndSkills)}
+      {skillsRow("Back-end: ", backEndSkills)}
     </Fragment>
   );
 };
