@@ -41,7 +41,6 @@ const Content: React.FC<ContentProps> = (props) => {
         ) : (
           <ImageWrapper image={image} imageData={imageData} />
         )}
-        ,
       </Grid>
       <Grid item xs={12} md={6}>
         {title.length ? (
