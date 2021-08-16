@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Grid, Typography, Chip, useTheme } from "@material-ui/core";
-import { backEndSkills, frontEndSkills } from "./util/database";
+import { backEndSkills, frontEndSkills, otherSkills } from "./util/database";
 
 const Skills: React.FC = () => {
   const theme = useTheme();
@@ -49,6 +49,7 @@ const Skills: React.FC = () => {
     <Fragment>
       {skillsRow("Front-end: ", frontEndSkills)}
       {skillsRow("Back-end: ", backEndSkills)}
+      {skillsRow("Other: ", otherSkills)}
     </Fragment>
   );
 };

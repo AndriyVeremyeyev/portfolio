@@ -43,7 +43,11 @@ export const backEndSkills = [
   "MySQL",
   "PostgreSQL",
   "Firebase",
+  "Serverless",
+  "Auth0",
 ];
+
+export const otherSkills = ["Git", "GitHub", "GitLab", "Postman", "Trello"];
 
 export const links = {
   westSeattle: "https://west-seattle-bikes.web.app/",
